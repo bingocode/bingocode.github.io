@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bingocode.github.io/</id>
     <title>BingoCode</title>
-    <updated>2019-07-18T06:21:13.256Z</updated>
+    <updated>2019-07-18T06:33:48.433Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bingocode.github.io/"/>
     <link rel="self" href="https://bingocode.github.io//atom.xml"/>
@@ -18,7 +18,7 @@
         <updated>2019-07-10T08:05:52.000Z</updated>
         <content type="html"><![CDATA[<h2 id="蓝牙通用知识概述">蓝牙通用知识概述</h2>
 <h3 id="发展历史">发展历史</h3>
-<p>蓝牙技术是一种近距离无线通信技术，始于爱立信公司1994年的技术方案，在1998年，索尼，英特尔，诺基亚等创立创立特别兴趣小组（蓝牙技术联盟的前身），负责蓝牙规范的制定和推广
+<p>蓝牙技术是一种近距离无线通信技术，始于爱立信公司1994年的技术方案，在1998年，索尼，英特尔，诺基亚等创立特别兴趣小组（蓝牙技术联盟的前身），负责蓝牙规范的制定和推广
 <img src="https://bingocode.github.io//post-images/1563423177160.png" alt=""></p>
 <h3 id="协议栈">协议栈</h3>
 <p><img src="https://bingocode.github.io//post-images/1563423650923.png" alt=""></p>
@@ -64,18 +64,21 @@
 <p>低功耗蓝牙通信的配置文件代理。实现了<strong>BluetoothProfile</strong></p>
 <h2 id="蓝牙开发权限和配置">蓝牙开发权限和配置</h2>
 <h3 id="权限">权限</h3>
-<p>请求连接、接受连接、和传输数据
-<code>&lt;uses-permission android:name = &quot;android.permission.BLUETOOTH&quot;/&gt;</code>
-发现或者操作蓝牙设置
-<code>&lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_ADMIN&quot;/&gt;</code>
-如果是采用BLE蓝牙，通常还需要声明位置权限</p>
+<p>请求连接、接受连接、和传输数据</p>
+<pre><code>&lt;uses-permission android:name = &quot;android.permission.BLUETOOTH&quot;/&gt;
+</code></pre>
+<p>发现或者操作蓝牙设置</p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_ADMIN&quot;/&gt;
+</code></pre>
+<p>如果是采用BLE蓝牙，通常还需要声明位置权限</p>
 <pre><code>  &lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;
   &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;
 </code></pre>
 <h3 id="声明支持设备">声明支持设备</h3>
-<p>如果要声明我们的应用仅适用于支持 BLE 的设备，需要清单文件中做如下声明，如果我们希望我们的应用程序在不支持 BLE 的设备上也可以运行的时候，只需要将 true 修改成 false
-<code>&lt;uses-feature android:name = &quot;android.hardware.bluetooth_le&quot; android:required = true /&gt;</code>
-在代码中判断是否支持BLE</p>
+<p>如果要声明我们的应用仅适用于支持 BLE 的设备，需要清单文件中做如下声明，如果我们希望我们的应用程序在不支持 BLE 的设备上也可以运行的时候，只需要将 true 修改成 false</p>
+<pre><code>&lt;uses-feature android:name = &quot;android.hardware.bluetooth_le&quot; android:required = true /&gt;
+</code></pre>
+<p>在代码中判断是否支持BLE</p>
 <pre><code>if(!getPackageManager().hasSystemFeature(PackgeManger.FEATURE_BLUETOOTH_LE)){
     // 不支持 BLE 设备
 }
