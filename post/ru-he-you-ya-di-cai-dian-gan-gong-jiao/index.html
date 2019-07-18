@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>文章归档 | BingoCode</title>
+<title>如何优雅地踩点赶公交 | BingoCode</title>
 <meta name="description" content="先天领周天，盖周天之变，化吾为王">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,6 +13,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://bingocode.github.io//styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -115,90 +121,46 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          
+          <div class="post-detail">
+            <h2 class="post-title">如何优雅地踩点赶公交</h2>
+            <div class="post-date">2019-07-10</div>
+            
+              <div class="feature-container" style="background-image: url('https://bingocode.github.io//post-images/ru-he-you-ya-di-cai-dian-gan-gong-jiao.jpeg')">
+              </div>
+            
+            <div class="post-content">
+              <p>赶公交</p>
 
-          <h2 class="archives-title">文章归档</h2>
-          <div class="archives-container">
+            </div>
             
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2019</h2>
+              <div class="tag-container">
+                
+                  <a href="https://bingocode.github.io//tag/flutter" class="tag">
+                    Flutter
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://bingocode.github.io//post/lesslesschang-an-shi-er-shi-chen-greatergreater-shu-ju-wa-jue-zai-tang-zhao-de-ying-yong-yu-kuo-zhan">
+                  <h3 class="post-title">
+                    《长安十二时辰》——数据挖掘在唐朝的应用与扩展
+                  </h3>
+                </a>
+              </div>
+            
+
+            
               
-                
-                  <article class="post">
-                    <a href="https://bingocode.github.io//post/android-lan-ya-kai-fa-zhi-shi-chen-dian">
-                      <h2 class="post-title">
-                        Android蓝牙开发知识沉淀
-                      </h2>
-                    </a>
-                  </article>
-                
+                <div id="gitalk-container" data-aos="fade-in"></div>
               
-                
-                  <article class="post">
-                    <a href="https://bingocode.github.io//post/ru-he-you-ya-di-cai-dian-gan-gong-jiao">
-                      <h2 class="post-title">
-                        如何优雅地踩点赶公交
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://bingocode.github.io//post/lesslesschang-an-shi-er-shi-chen-greatergreater-shu-ju-wa-jue-zai-tang-zhao-de-ying-yong-yu-kuo-zhan">
-                      <h2 class="post-title">
-                        《长安十二时辰》——数据挖掘在唐朝的应用与扩展
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://bingocode.github.io//post/android-jin-jie">
-                      <h2 class="post-title">
-                        Android进阶
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://bingocode.github.io//post/cheng-xu-yuan-xiu-lian-zhi-dao">
-                      <h2 class="post-title">
-                        程序员修炼之道
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://bingocode.github.io//post/flutter-hun-he-kai-fa">
-                      <h2 class="post-title">
-                        Flutter混合开发
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://bingocode.github.io//post/about">
-                      <h2 class="post-title">
-                        关于
-                      </h2>
-                    </a>
-                  </article>
-                
+
               
             
+
           </div>
-
-          <div class="pagination-container">
-  
-  
-</div>
 
         </div>
       </div>
@@ -220,6 +182,29 @@ var app = new Vue({
 })
 
 </script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '78866918acdc5701edcc',
+        clientSecret: '1c5cd320e7e1f13074ee95d1ea7189f3f7f0a127',
+        repo: 'bingocode.github.io',
+        owner: 'bingocode',
+        admin: ['bingocode'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 

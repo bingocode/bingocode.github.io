@@ -1,22 +1,135 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://bingocode.github.io/</id>
-    <title>BingoCode</title>
-    <updated>2019-07-18T06:21:13.256Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://bingocode.github.io/"/>
-    <link rel="self" href="https://bingocode.github.io//atom.xml"/>
-    <subtitle>先天领周天，盖周天之变，化吾为王</subtitle>
-    <logo>https://bingocode.github.io//images/avatar.png</logo>
-    <icon>https://bingocode.github.io//favicon.ico</icon>
-    <rights>All rights reserved 2019, BingoCode</rights>
-    <entry>
-        <title type="html"><![CDATA[Android蓝牙开发知识沉淀]]></title>
-        <id>https://bingocode.github.io//post/android-lan-ya-kai-fa-zhi-shi-chen-dian</id>
-        <link href="https://bingocode.github.io//post/android-lan-ya-kai-fa-zhi-shi-chen-dian">
-        </link>
-        <updated>2019-07-10T08:05:52.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="蓝牙通用知识概述">蓝牙通用知识概述</h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Android蓝牙开发知识沉淀 | BingoCode</title>
+<meta name="description" content="先天领周天，盖周天之变，化吾为王">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://bingocode.github.io//favicon.ico?v=1563430869132">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://bingocode.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://bingocode.github.io/">
+        <img src="https://bingocode.github.io//images/avatar.png?v=1563430869132" class="site-logo">
+        <h1 class="site-title">BingoCode</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://bingocode.github.io//post/about/" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="https://bingocode.github.io/tag/booknote/" class="site-nav">
+            阅读
+          </a>
+        
+      
+        
+          <a href="https://bingocode.github.io/tag/flutter/" class="site-nav">
+            Flutter
+          </a>
+        
+      
+        
+          <a href="https://bingocode.github.io//tags" class="site-nav">
+            所有标签
+          </a>
+        
+      
+        
+          <a href="https://bingocode.github.io/tag/androd/" class="site-nav">
+            Android
+          </a>
+        
+      
+        
+          <a href="https://bingocode.github.io/tag/life/" class="site-nav">
+            生活
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      先天领周天，盖周天之变，化吾为王
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/bingocode" target="_blank">bingocode</a> | <a class="rss" href="https://bingocode.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Android蓝牙开发知识沉淀</h2>
+            <div class="post-date">2019-07-10</div>
+            
+              <div class="feature-container" style="background-image: url('https://bingocode.github.io//post-images/android-lan-ya-kai-fa-zhi-shi-chen-dian.jpeg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="蓝牙通用知识概述">蓝牙通用知识概述</h2>
 <h3 id="发展历史">发展历史</h3>
 <p>蓝牙技术是一种近距离无线通信技术，始于爱立信公司1994年的技术方案，在1998年，索尼，英特尔，诺基亚等创立创立特别兴趣小组（蓝牙技术联盟的前身），负责蓝牙规范的制定和推广
 <img src="https://bingocode.github.io//post-images/1563423177160.png" alt=""></p>
@@ -124,86 +237,84 @@ mBluetoothAdapter.enable();
 <li>建立连接后，两个设备都有一个<strong>BluetoothSocket</strong>，并通过该Socket进行流式传输数据4</li>
 <li>与BLE设备连接，就是连接到该设备的GATT服务，并得到一个BluetoothGatt对象，通过该对象和BLE设备交互，在支持的位置读取和写入属性。</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[如何优雅地踩点赶公交]]></title>
-        <id>https://bingocode.github.io//post/ru-he-you-ya-di-cai-dian-gan-gong-jiao</id>
-        <link href="https://bingocode.github.io//post/ru-he-you-ya-di-cai-dian-gan-gong-jiao">
-        </link>
-        <updated>2019-07-10T07:44:43.000Z</updated>
-        <content type="html"><![CDATA[<p>赶公交</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[《长安十二时辰》——数据挖掘在唐朝的应用与扩展]]></title>
-        <id>https://bingocode.github.io//post/lesslesschang-an-shi-er-shi-chen-greatergreater-shu-ju-wa-jue-zai-tang-zhao-de-ying-yong-yu-kuo-zhan</id>
-        <link href="https://bingocode.github.io//post/lesslesschang-an-shi-er-shi-chen-greatergreater-shu-ju-wa-jue-zai-tang-zhao-de-ying-yong-yu-kuo-zhan">
-        </link>
-        <updated>2019-07-08T11:21:22.000Z</updated>
-        <content type="html"><![CDATA[<p>如题</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Android进阶]]></title>
-        <id>https://bingocode.github.io//post/android-jin-jie</id>
-        <link href="https://bingocode.github.io//post/android-jin-jie">
-        </link>
-        <updated>2019-07-08T11:19:43.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="android">Android</h2>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[程序员修炼之道]]></title>
-        <id>https://bingocode.github.io//post/cheng-xu-yuan-xiu-lian-zhi-dao</id>
-        <link href="https://bingocode.github.io//post/cheng-xu-yuan-xiu-lian-zhi-dao">
-        </link>
-        <updated>2019-07-08T08:09:00.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="注重实效的哲学">注重实效的哲学</h2>
-<ul>
-<li>最大的弱点在于害怕暴露弱点，负责是指遇到问题会提供各种选择，而不是找各种借口，不要害怕提出要求，也不要害怕承认你需要帮助。</li>
-<li>软件的熵（一个系统中无序的总量）需要通过不断优化劣质代码来降低，防止软件腐烂，就必须与熵战斗到底</li>
-<li>石头汤：开发协作由于每个人时间安排不一致，但是为了避免项目的拖延，可以先完成自己的那部分功能，然后给大家看，等着他们开始增加你想要的功能，因为让人们参与正在发生的成功更容易，让他们瞥见未来，就能让他们聚集在你周围。并且必须留心大图景，持续观察周围发生的改变，而不只是你自己在做的事情。</li>
-<li>要注意物极必反，你所要完成的项目的范围和质量应该作为项目需求的一部分规定下来，让质量成为需求问题。我们要学会在不完美的世界上合理地编写代码</li>
-<li>知识上的投资总能够得到最好的回报，要学会管理知识资产
-1.定期投资作为习惯
-2.多元化投资是长期成功的关键
-3.聪明的投资者会权衡风险和回报
-4.设法低买高卖以获得最大回报：在新兴技术流行前学习它可能就和找到被低估的股票一样
-5.应该周期性地重新评估和平衡资产</li>
-<li>每年至少学习一种新语言，每个月读一本书（技术和非技术），打听公司以外的人都在做什么，试验不同的环境（系统，IDE，软件），跟上潮流，持续投入，设法将所学应用到项目中。</li>
-<li>遇到问题先自己找答案，再去找出能找到答案的人，而不是搁置问题，与人交谈不仅帮你建立人际网络，还能促进旧的知识资产增长。</li>
-<li>批判地思考所学，确保知识资产是准确无误的，才能够理解一些复杂的答案</li>
-<li>寻找答案？
-1.明确到底想问什么
-2.组织问题，表达寻求帮助，而不是要求对方必须回答
-3.坐回原位，耐性等待，每个人都很忙</li>
-<li>交流：想说什么？了解听众（需要，能力，兴趣）？时机？风格？获取反馈？回复他人</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Flutter混合开发]]></title>
-        <id>https://bingocode.github.io//post/flutter-hun-he-kai-fa</id>
-        <link href="https://bingocode.github.io//post/flutter-hun-he-kai-fa">
-        </link>
-        <updated>2019-07-08T04:21:50.000Z</updated>
-        <content type="html"><![CDATA[<p>##配置</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[关于]]></title>
-        <id>https://bingocode.github.io//post/about</id>
-        <link href="https://bingocode.github.io//post/about">
-        </link>
-        <updated>2019-01-25T11:09:48.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="关于我">关于我</h2>
-<p>你好，这是我的博客，很荣幸可以与阁下分享我的人生轨迹。本人目前从事Android开发。</p>
-<h2 id="关于博客">关于博客</h2>
-<p>采用静态博客写作客户端<a href="https://gridea.dev/">Gridle</a>编写，存放在<a href="https://github.com/bingocode/bingocode.github.io">Github Page</a></p>
-<h2 id="联系方式">联系方式</h2>
-<p>QQ: 2416940975<br>
-e-mail: bingocoder@outlook.com</p>
-]]></content>
-    </entry>
-</feed>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://bingocode.github.io//tag/androd" class="tag">
+                    Android
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://bingocode.github.io//post/ru-he-you-ya-di-cai-dian-gan-gong-jiao">
+                  <h3 class="post-title">
+                    如何优雅地踩点赶公交
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '78866918acdc5701edcc',
+        clientSecret: '1c5cd320e7e1f13074ee95d1ea7189f3f7f0a127',
+        repo: 'bingocode.github.io',
+        owner: 'bingocode',
+        admin: ['bingocode'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
