@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://bingocode.github.io//favicon.ico?v=1564412862677">
+<link rel="shortcut icon" href="https://bingocode.github.io//favicon.ico?v=1571103637738">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://bingocode.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://bingocode.github.io/">
-        <img src="https://bingocode.github.io//images/avatar.png?v=1564412862677" class="site-logo">
+        <img src="https://bingocode.github.io//images/avatar.png?v=1571103637738" class="site-logo">
         <h1 class="site-title">BingoCode</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -131,10 +131,10 @@
             <div class="post-content">
               <h2 id="蓝牙通用知识概述">蓝牙通用知识概述</h2>
 <h3 id="发展历史">发展历史</h3>
-<p>蓝牙技术是一种近距离无线通信技术，始于爱立信公司1994年的技术方案，在1998年，索尼，英特尔，诺基亚等创立特别兴趣小组（蓝牙技术联盟的前身），负责蓝牙规范的制定和推广
+<p>蓝牙技术是一种近距离无线通信技术，始于爱立信公司1994年的技术方案，在1998年，索尼，英特尔，诺基亚等创立特别兴趣小组（蓝牙技术联盟的前身），负责蓝牙规范的制定和推广<br>
 <img src="https://bingocode.github.io//post-images/1563423177160.png" alt=""></p>
 <h3 id="协议栈">协议栈</h3>
-<p><img src="https://bingocode.github.io//post-images/1563423650923.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://bingocode.github.io//post-images/1563423650923.png" alt=""></figure>
 <ul>
 <li>控制器：底层实现，直接和硬件相关，由芯片厂商实现</li>
 <li>主机：硬件的抽象。其中通用访问控制配置文件（GAP）。定义了 BLE 整个通信过程中的流程，负责处理设备访问模式和程序，包括设备发现、建立连接、终止连接等等。GAP 层总是作为下面四种角色之一：（1）广播者：不可连接的广播设备。（2）观察者：扫描设备，但不发起建立连接 （3）外部设备：可连接的广播设备，可以在单个链路层连接中作为从机。（4）集中器：扫描广播设备并发起连接，可以在单链路层连接中作为主机</li>
@@ -153,8 +153,8 @@
 </ul>
 <ul>
 <li>属性协议（ATT Attribute Protocol）：ATT 是整个BLE通信的基础，负责数据封装，使用尽可能少的字节，向外暴露属性的为服务端，获取属性的为客户端。每个属性由通用唯一标识符（UUID）来唯一标识。ATT 传输的属性被格式化为<strong>特征</strong> 和<strong>服务</strong></li>
-<li>通用属性配置文件（GATT Generic Attribute Profile）：是一种传输数据规范，是基于 ATT 做的进一步的逻辑封装，定义数据的交互方式和含义。也被称为 GATT/ATT 。用于在 BLE 链路上发送和接受被称为属性的短数据的通用规范。目前所有低功耗应用配置文件基本都是基于 GATT。GATT 定义了三个非常重要的概念：服务（Service）、特征（Characteristic）、描述（Descripter）。他们的关系如下图
-<img src="https://bingocode.github.io//post-images/1563429896314.png" alt="">
+<li>通用属性配置文件（GATT Generic Attribute Profile）：是一种传输数据规范，是基于 ATT 做的进一步的逻辑封装，定义数据的交互方式和含义。也被称为 GATT/ATT 。用于在 BLE 链路上发送和接受被称为属性的短数据的通用规范。目前所有低功耗应用配置文件基本都是基于 GATT。GATT 定义了三个非常重要的概念：服务（Service）、特征（Characteristic）、描述（Descripter）。他们的关系如下图<br>
+<img src="https://bingocode.github.io//post-images/1563429896314.png" alt=""><br>
 一个 Service 可以包含若干个 Characteristic，一个 Characteristic 可以包含属性（properties）和值（value），还可以包含多个 descripter 。Characteristic 实际上具有读、写、通知等权限。我们在对一个 BLE 设备发起连接成功以后，对他进行读写操作，其实就是对 Characteristic 的操作。图中的 Profile 是一组服务的集合，这些服务组个起来就形成了一个特定的使用场景了，里面的服务是嵌入式工作人员可以添加的。BLE 蓝牙使用 UUID 来区分 Service、Characteristic 、Descripter。</li>
 <li>特征：征包含单个值和描述特征值的 0 ~ n 个描述符，BLE 设备进行通信的时候主要的操作内容</li>
 <li>服务：服务中包含一系列的特征值。例如，我们可以使用名为 “心率监测器”的服务，其中包括&quot;心率测量&quot;等特征</li>
@@ -218,7 +218,7 @@ startActivityForResult(enableBtIntent,REQUEST_ENBLE_BT);
 mBluetoothAdapter.enable(); 
 </code></pre>
 <h3 id="查找设备">查找设备</h3>
-<p>BluetoothAdapter通过设备发现或查询配对设备的列表来查找远程蓝牙设备。蓝牙设备仅在其当前已启用可检测时才会响应发现请求（返回设备名称，类和mac地址）。利用响应的数据可以与远程设备建立连接，首次建立连接后，将会自动向用户显示配对请求，完成配对后，则会将该设备信息（名称，mac地址）保存在本地（配对设备列表），下次则可以利用本地已知的mac地址发起连接而不需要执行设备发现。
+<p>BluetoothAdapter通过设备发现或查询配对设备的列表来查找远程蓝牙设备。蓝牙设备仅在其当前已启用可检测时才会响应发现请求（返回设备名称，类和mac地址）。利用响应的数据可以与远程设备建立连接，首次建立连接后，将会自动向用户显示配对请求，完成配对后，则会将该设备信息（名称，mac地址）保存在本地（配对设备列表），下次则可以利用本地已知的mac地址发起连接而不需要执行设备发现。<br>
 <img src="https://bingocode.github.io//post-images/1562918316320.png" alt=""></p>
 <ul>
 <li>发现设备：发现BLE设备和发现普通蓝牙设备方法不一样，并且，只能单独发现普通蓝牙设备或BLE设备，没办法同时执行。发现是一个异步过程，但对于蓝牙适配器来来说会消耗大量资源，所以要确保停止发现后再去连接。</li>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bingocode.github.io/</id>
     <title>BingoCode</title>
-    <updated>2019-07-29T15:07:44.898Z</updated>
+    <updated>2019-10-15T01:40:48.889Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bingocode.github.io/"/>
     <link rel="self" href="https://bingocode.github.io//atom.xml"/>
@@ -44,21 +44,22 @@
 <li>Dart是面向对象的、类定义的、单继承的语言，一切都是对象（包括基本类型，函数，null），所有对象都继承自Object</li>
 <li>Dart是强类型语言，但也自带类型推断</li>
 <li>Dart中没有public，private，protected，默认都是public的，可以通过_开头指定是库私有的</li>
+<li>Dart支持顶级变量（不与类绑定）和顶级函数（如main函数）</li>
 </ul>
 <h1 id="变量">变量</h1>
-<p>Dart为强类型语言，变量可显式声明，也可自动推断，但推断出来后，该变量的类型将不再改变，若要让变量不被限制于一种类型，可将变量声明为dynamic。</p>
+<p>Dart为强类型语言，变量可显式声明，也可自动推断，但推断出来后，该变量的类型将不再改变，若要让变量不被限制于一种类型，可将变量声明为dynamic或Object</p>
 <h2 id="类型">类型</h2>
 <ul>
-<li>数字num
-int: 平台的不同,范围也不同。整数值不大于64位。在Dart VM上，值可以从-2^63到2^63 - 1
-double: 64位(双精度)浮点数
+<li>数字num<br>
+int: 平台的不同,范围也不同。整数值不大于64位。在Dart VM上，值可以从-2<sup>63到2</sup>63 - 1<br>
+double: 64位(双精度)浮点数<br>
 数字和字符串转换：</li>
 </ul>
 <pre><code>int.parse('1') 
 3.14159.toStringAsFixed(2);
 </code></pre>
 <ul>
-<li>字符串String
+<li>字符串String<br>
 String是UTF-16编码单元的序列，可以使用${expression}将表达式的值放入字符串中。如果表达式是一个标识符，可以不用{},</li>
 </ul>
 <pre><code>String str = &quot;world&quot;;
@@ -70,13 +71,13 @@ print(s); //虽然有换行符，但输出不会换行
 </code></pre>
 <ul>
 <li>布尔型(bool):true, false</li>
-<li>列表List
+<li>列表List<br>
 数组即为列表对象</li>
 </ul>
 <pre><code>var list = [1,2,3];  //推断为List&lt;int&gt; 类型，若添加非int对象，则会报错
 </code></pre>
 <ul>
-<li>映射Map
+<li>映射Map<br>
 可以通过map字面量直接创建，也可以通过Map()构造方法创建, 类型会自动推断</li>
 </ul>
 <pre><code>var g = { 1: 'a', 2: 'b', 3: 'c'}
@@ -85,7 +86,7 @@ g1[1] = 'a1'
 final constantMap = const {2: 'b', 3: 'c'};
 </code></pre>
 <ul>
-<li>字符Runes:
+<li>字符Runes:<br>
 字符是字符串的UTF-32编码</li>
 <li>符号Symbols:</li>
 </ul>
@@ -93,20 +94,20 @@ final constantMap = const {2: 'b', 3: 'c'};
 // 输出 Symbol(&quot;bar&quot;)
 </code></pre>
 <h2 id="变量声明">变量声明</h2>
-<p>Dart没有public protected private等关键字，如果某个变量以下划线开头，代表这个变量在库中是私有的</p>
+<p>Dart没有public protected private等关键字，如果某个变量以下划线开头，代表这个变量是私有的</p>
 <pre><code>String me = &quot;Bob&quot;;  // 显式name变量声明为String
 var you = &quot;Bob&quot;;   // 自动推断name变量为String
 dynamec he = “Bob”;   // 声明变量为任意类型，类似于java中Object
 he = 18;   
 int u;  // 未初始化的变量初始值为null，变量存放的是对象，对象都继承自Object类
 final a;  // 最终变量，只能设置一次，顶级或类变量在第一次使用时被初始化
-const b;  // 编译时常量，注意实例变量可以是final，但不能是const。
+const b = 9;  // 编译时常量，定义时必须赋值。注意实例变量可以是final，但不能是const。
 var f = const[];
 f = [1,3];   // 可以更改一个非final的且非const变量的值，即使它曾经有一个const值
 </code></pre>
 <h1 id="运算符">运算符</h1>
 <h2 id="相等">相等（==）</h2>
-<p>若两者都为空则返回true，若只有一空返回false；
+<p>若两者都为空则返回true，若只有一空返回false；<br>
 需要知道两个对象是否完全相同的情况下，可以使用identical()函数</p>
 <h2 id="类型判断is">类型判断（is）</h2>
 <p>若obj 实现了T，则 obj is T 为真</p>
@@ -119,7 +120,7 @@ f = [1,3];   // 可以更改一个非final的且非const变量的值，即使它
 <pre><code>expr1 ?? expr2 ； //如果expr1是非空的，则返回其值，否则，计算并返回expr2的值
 </code></pre>
 <h2 id="级联">级联（..）</h2>
-<p>在同一个对象上创建一个操作序列。可以访问同一对象上的字段，调用函数，省去创建临时变量的步骤。
+<p>在同一个对象上创建一个操作序列。可以访问同一对象上的字段，调用函数，省去创建临时变量的步骤。<br>
 不能在一个返回void结果上继续构建级联操作</p>
 <pre><code>querySelector('#confirm') // 获取一个对象
   ..text = 'Confirm' // 使用它的成员
@@ -231,10 +232,10 @@ Future checkVersion() async {
         <updated>2019-07-10T08:05:52.000Z</updated>
         <content type="html"><![CDATA[<h2 id="蓝牙通用知识概述">蓝牙通用知识概述</h2>
 <h3 id="发展历史">发展历史</h3>
-<p>蓝牙技术是一种近距离无线通信技术，始于爱立信公司1994年的技术方案，在1998年，索尼，英特尔，诺基亚等创立特别兴趣小组（蓝牙技术联盟的前身），负责蓝牙规范的制定和推广
+<p>蓝牙技术是一种近距离无线通信技术，始于爱立信公司1994年的技术方案，在1998年，索尼，英特尔，诺基亚等创立特别兴趣小组（蓝牙技术联盟的前身），负责蓝牙规范的制定和推广<br>
 <img src="https://bingocode.github.io//post-images/1563423177160.png" alt=""></p>
 <h3 id="协议栈">协议栈</h3>
-<p><img src="https://bingocode.github.io//post-images/1563423650923.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://bingocode.github.io//post-images/1563423650923.png" alt=""></figure>
 <ul>
 <li>控制器：底层实现，直接和硬件相关，由芯片厂商实现</li>
 <li>主机：硬件的抽象。其中通用访问控制配置文件（GAP）。定义了 BLE 整个通信过程中的流程，负责处理设备访问模式和程序，包括设备发现、建立连接、终止连接等等。GAP 层总是作为下面四种角色之一：（1）广播者：不可连接的广播设备。（2）观察者：扫描设备，但不发起建立连接 （3）外部设备：可连接的广播设备，可以在单个链路层连接中作为从机。（4）集中器：扫描广播设备并发起连接，可以在单链路层连接中作为主机</li>
@@ -253,8 +254,8 @@ Future checkVersion() async {
 </ul>
 <ul>
 <li>属性协议（ATT Attribute Protocol）：ATT 是整个BLE通信的基础，负责数据封装，使用尽可能少的字节，向外暴露属性的为服务端，获取属性的为客户端。每个属性由通用唯一标识符（UUID）来唯一标识。ATT 传输的属性被格式化为<strong>特征</strong> 和<strong>服务</strong></li>
-<li>通用属性配置文件（GATT Generic Attribute Profile）：是一种传输数据规范，是基于 ATT 做的进一步的逻辑封装，定义数据的交互方式和含义。也被称为 GATT/ATT 。用于在 BLE 链路上发送和接受被称为属性的短数据的通用规范。目前所有低功耗应用配置文件基本都是基于 GATT。GATT 定义了三个非常重要的概念：服务（Service）、特征（Characteristic）、描述（Descripter）。他们的关系如下图
-<img src="https://bingocode.github.io//post-images/1563429896314.png" alt="">
+<li>通用属性配置文件（GATT Generic Attribute Profile）：是一种传输数据规范，是基于 ATT 做的进一步的逻辑封装，定义数据的交互方式和含义。也被称为 GATT/ATT 。用于在 BLE 链路上发送和接受被称为属性的短数据的通用规范。目前所有低功耗应用配置文件基本都是基于 GATT。GATT 定义了三个非常重要的概念：服务（Service）、特征（Characteristic）、描述（Descripter）。他们的关系如下图<br>
+<img src="https://bingocode.github.io//post-images/1563429896314.png" alt=""><br>
 一个 Service 可以包含若干个 Characteristic，一个 Characteristic 可以包含属性（properties）和值（value），还可以包含多个 descripter 。Characteristic 实际上具有读、写、通知等权限。我们在对一个 BLE 设备发起连接成功以后，对他进行读写操作，其实就是对 Characteristic 的操作。图中的 Profile 是一组服务的集合，这些服务组个起来就形成了一个特定的使用场景了，里面的服务是嵌入式工作人员可以添加的。BLE 蓝牙使用 UUID 来区分 Service、Characteristic 、Descripter。</li>
 <li>特征：征包含单个值和描述特征值的 0 ~ n 个描述符，BLE 设备进行通信的时候主要的操作内容</li>
 <li>服务：服务中包含一系列的特征值。例如，我们可以使用名为 “心率监测器”的服务，其中包括&quot;心率测量&quot;等特征</li>
@@ -318,7 +319,7 @@ startActivityForResult(enableBtIntent,REQUEST_ENBLE_BT);
 mBluetoothAdapter.enable(); 
 </code></pre>
 <h3 id="查找设备">查找设备</h3>
-<p>BluetoothAdapter通过设备发现或查询配对设备的列表来查找远程蓝牙设备。蓝牙设备仅在其当前已启用可检测时才会响应发现请求（返回设备名称，类和mac地址）。利用响应的数据可以与远程设备建立连接，首次建立连接后，将会自动向用户显示配对请求，完成配对后，则会将该设备信息（名称，mac地址）保存在本地（配对设备列表），下次则可以利用本地已知的mac地址发起连接而不需要执行设备发现。
+<p>BluetoothAdapter通过设备发现或查询配对设备的列表来查找远程蓝牙设备。蓝牙设备仅在其当前已启用可检测时才会响应发现请求（返回设备名称，类和mac地址）。利用响应的数据可以与远程设备建立连接，首次建立连接后，将会自动向用户显示配对请求，完成配对后，则会将该设备信息（名称，mac地址）保存在本地（配对设备列表），下次则可以利用本地已知的mac地址发起连接而不需要执行设备发现。<br>
 <img src="https://bingocode.github.io//post-images/1562918316320.png" alt=""></p>
 <ul>
 <li>发现设备：发现BLE设备和发现普通蓝牙设备方法不一样，并且，只能单独发现普通蓝牙设备或BLE设备，没办法同时执行。发现是一个异步过程，但对于蓝牙适配器来来说会消耗大量资源，所以要确保停止发现后再去连接。</li>
@@ -352,15 +353,6 @@ mBluetoothAdapter.enable();
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[《长安十二时辰》——数据挖掘在唐朝的应用与扩展]]></title>
-        <id>https://bingocode.github.io//post/lesslesschang-an-shi-er-shi-chen-greatergreater-shu-ju-wa-jue-zai-tang-zhao-de-ying-yong-yu-kuo-zhan</id>
-        <link href="https://bingocode.github.io//post/lesslesschang-an-shi-er-shi-chen-greatergreater-shu-ju-wa-jue-zai-tang-zhao-de-ying-yong-yu-kuo-zhan">
-        </link>
-        <updated>2019-07-08T11:21:22.000Z</updated>
-        <content type="html"><![CDATA[<p>如题</p>
-]]></content>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Android进阶]]></title>
         <id>https://bingocode.github.io//post/android-jin-jie</id>
         <link href="https://bingocode.github.io//post/android-jin-jie">
@@ -381,18 +373,18 @@ mBluetoothAdapter.enable();
 <li>软件的熵（一个系统中无序的总量）需要通过不断优化劣质代码来降低，防止软件腐烂，就必须与熵战斗到底</li>
 <li>石头汤：开发协作由于每个人时间安排不一致，但是为了避免项目的拖延，可以先完成自己的那部分功能，然后给大家看，等着他们开始增加你想要的功能，因为让人们参与正在发生的成功更容易，让他们瞥见未来，就能让他们聚集在你周围。并且必须留心大图景，持续观察周围发生的改变，而不只是你自己在做的事情。</li>
 <li>要注意物极必反，你所要完成的项目的范围和质量应该作为项目需求的一部分规定下来，让质量成为需求问题。我们要学会在不完美的世界上合理地编写代码</li>
-<li>知识上的投资总能够得到最好的回报，要学会管理知识资产
-1.定期投资作为习惯
-2.多元化投资是长期成功的关键
-3.聪明的投资者会权衡风险和回报
-4.设法低买高卖以获得最大回报：在新兴技术流行前学习它可能就和找到被低估的股票一样
+<li>知识上的投资总能够得到最好的回报，要学会管理知识资产<br>
+1.定期投资作为习惯<br>
+2.多元化投资是长期成功的关键<br>
+3.聪明的投资者会权衡风险和回报<br>
+4.设法低买高卖以获得最大回报：在新兴技术流行前学习它可能就和找到被低估的股票一样<br>
 5.应该周期性地重新评估和平衡资产</li>
 <li>每年至少学习一种新语言，每个月读一本书（技术和非技术），打听公司以外的人都在做什么，试验不同的环境（系统，IDE，软件），跟上潮流，持续投入，设法将所学应用到项目中。</li>
 <li>遇到问题先自己找答案，再去找出能找到答案的人，而不是搁置问题，与人交谈不仅帮你建立人际网络，还能促进旧的知识资产增长。</li>
 <li>批判地思考所学，确保知识资产是准确无误的，才能够理解一些复杂的答案</li>
-<li>寻找答案？
-1.明确到底想问什么
-2.组织问题，表达寻求帮助，而不是要求对方必须回答
+<li>寻找答案？<br>
+1.明确到底想问什么<br>
+2.组织问题，表达寻求帮助，而不是要求对方必须回答<br>
 3.坐回原位，耐性等待，每个人都很忙</li>
 <li>交流：想说什么？了解听众（需要，能力，兴趣）？时机？风格？获取反馈？回复他人</li>
 </ul>
