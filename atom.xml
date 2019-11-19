@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bingocode.github.io/</id>
     <title>BingoCode</title>
-    <updated>2019-10-15T01:40:48.889Z</updated>
+    <updated>2019-11-19T14:37:45.388Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bingocode.github.io/"/>
     <link rel="self" href="https://bingocode.github.io//atom.xml"/>
@@ -10,6 +10,556 @@
     <logo>https://bingocode.github.io//images/avatar.png</logo>
     <icon>https://bingocode.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, BingoCode</rights>
+    <entry>
+        <title type="html"><![CDATA[Java并发性能]]></title>
+        <id>https://bingocode.github.io//post/java-bing-fa-xing-neng</id>
+        <link href="https://bingocode.github.io//post/java-bing-fa-xing-neng">
+        </link>
+        <updated>2019-11-07T15:10:31.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="线程死锁">线程死锁</h1>
+<p>死锁通常发生在多个线程由于环路依赖关系而永久等待，如当A线程占有锁M，A想要获取锁N，但B线程持有锁N，并尝试获取锁M，则两个线程将永远阻塞等待，形成死锁</p>
+<p>数据库系统检测死锁和恢复：通过监测正在事务之间的等待关系（如事务A等待事务B，A -&gt; B）形成的有向图，若发现环，则会选择一个事务退出，使得其他事务能继续进行，然后再重新执行这个被退出的事务</p>
+<h2 id="死锁类型">死锁类型</h2>
+<p>锁顺序死锁：两个线程试图通过不同顺序获取多个相同的锁。可以通过检查是否有嵌套，并制定好锁顺序，可以使用加时赛锁来规避<br>
+协作对象间死锁：在持有锁的时候，调用外部方法，而该外部方法又去获取其他锁。因此尽量多设计一些开放调用(不持有锁)，利用同步块代替同步方法减小持有锁的粒度，来减小死锁风险。<br>
+资源死锁：比如数据库连接池（信号量）<br>
+饥饿死锁：单线程串行</p>
+<h2 id="死锁避免和诊断">死锁避免和诊断</h2>
+<ul>
+<li>一次只获取一个锁，则不会产生顺序死锁，文档化锁顺序协议</li>
+<li>细化锁的范围，尽量用开放调用</li>
+<li>尝试超时机制，比如用Lock类替换内部锁</li>
+<li>JVM通过线程转储（thread dump）识别死锁发生，搜索“正在等待”有向图中的环</li>
+</ul>
+<h1 id="线程饥饿">线程饥饿</h1>
+<p>线程访问所需资源（CPU周期）时被永久拒绝。比如线程优先级太低一直无法获取到CPU执行周期</p>
+<h1 id="活锁">活锁</h1>
+<p>线程没有阻塞，但是不能继续向前执行。比如过度重试机制和两个线程之间相互让路的情况。可以试着引入一些随机性</p>
+<h1 id="引入线程的开销">引入线程的开销</h1>
+<h2 id="切换上下文">切换上下文</h2>
+<p>上下文切换的开销相当于5000到10000个时钟周期或几微秒</p>
+<h2 id="内存同步">内存同步</h2>
+<p>synchronized和volatile利用存储关卡（memory barrier）来刷新硬件写缓存，并延迟执行的传递，抑制了编译器优化，操作不能重排序</p>
+<h2 id="阻塞">阻塞</h2>
+<p>当多个线程竞争锁而发发生阻塞，被阻塞的线程会自旋等待（不断尝试）或挂起</p>
+<h1 id="提高并发性能">提高并发性能</h1>
+<h2 id="减少锁竞争">减少锁竞争</h2>
+<h3 id="减小持有锁的时间">减小持有锁的时间</h3>
+<ul>
+<li>把无关代码移出同步块，尤其是潜在的阻塞操作如IO，</li>
+<li>利用线程代理的方式，比如采用线程安全的底层容器来代理该对象所有线程安全的职责</li>
+</ul>
+<h3 id="减小请求锁的频率">减小请求锁的频率</h3>
+<p>采用分离锁，即用多个相互独立的锁守护多个独立的状态变量（如ConcurrentHashMap），但分离锁的缺点是想要独占访问整个容器更困难，比如重排时需要获取所有锁。</p>
+<h3 id="采用协调机制代替独占锁">采用协调机制代替独占锁</h3>
+<p>使用并发容器，读写锁（允许多读，但是写则必须独占锁），不可变对象，原子变量、</p>
+<h2 id="减少上下文切换的开销">减少上下文切换的开销</h2>
+<p>在线程运行和阻塞两个状态转换需要使用上下文切换，因此要尝试减少切换上下文的频率</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Glide鉴赏]]></title>
+        <id>https://bingocode.github.io//post/glide-jian-shang</id>
+        <link href="https://bingocode.github.io//post/glide-jian-shang">
+        </link>
+        <updated>2019-11-03T07:41:18.000Z</updated>
+        <summary type="html"><![CDATA[<!--->
+<p>源码太枯燥，操作太花哨</p>
+]]></summary>
+        <content type="html"><![CDATA[<!--->
+<p>源码太枯燥，操作太花哨</p>
+<!-- more -->
+<h1 id="glide是什么">Glide是什么？</h1>
+<p>Glide是google官方推荐的Android图片加载库，注重让图片加载变的流畅。支持加载视频快照（将本地视频文件地址传入，则展示该视频的快照），普通图片（png，jpg）和gif图片。内部默认采用HttpUrlConnection，也支持集成Volley或OkHttp。</p>
+<h1 id="我能用glide做什么">我能用Glide做什么</h1>
+<h1 id="glide怎么操作的">Glide怎么操作的</h1>
+<h1 id="全面分析">全面分析</h1>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[任务和线程池]]></title>
+        <id>https://bingocode.github.io//post/ren-wu-he-xian-cheng-chi</id>
+        <link href="https://bingocode.github.io//post/ren-wu-he-xian-cheng-chi">
+        </link>
+        <updated>2019-11-03T04:32:21.000Z</updated>
+        <content type="html"><![CDATA[<p>##无限制创建线程的缺点<br>
+线程生命周期的开销：创建和关闭一个线程会消耗时间<br>
+资源消耗量：若可运行线程数大于可用处理器数，则多的线程会空闲，给垃圾回收带来压力<br>
+稳定性：创建线程的限制数量，要综合考虑JVM启动参数，每个线程请求栈的大小，以及底层操作系统的线程限制（如华为手机系统限制500）。否则，很容易导致OOM</p>
+<h2 id="线程池executor">线程池（Executor）</h2>
+<p>任务（Task）：离散的工作单元，是独立的活动，不依赖其他任务的状态。如java中的Runnable</p>
+<p>任务取消：若任务外部代码能够在任务自然完成之前，将其更改为完成状态，则这个任务就是可取消的。<br>
+可取消的任务必须有自己的取消策略，包括外部代码如何请求取消，任务自身在何时检查取消请求的到达，以及如何响应取消请求（如通过一个volatile类型变量标志取消，轮训检查该标志）。另外对于阻塞类型的请求任务方法，应该支持线程中断机制来保证任务可取消，在响应中断的策略中，有传递异常或保存中断状态两种方法。</p>
+<p>任务不可取消：有些任务虽然可以调用可中断的阻塞方法，但必须在发现中断后进行重试，注意不要引起无限循环。</p>
+<pre><code>    class PrimeProducer extends  Thread {
+        private final BlockingQueue&lt;BigInteger&gt; queue;
+
+        public PrimeProducer(BlockingQueue&lt;BigInteger&gt; queue) {
+            this.queue = queue;
+        }
+
+        @Override
+        public void run() {
+            try {
+                BigInteger p = BigInteger.ONE;
+                while (!Thread.currentThread().isInterrupted()) {
+                    queue.put(p = p.nextProbablePrime());
+                }
+            } catch (InterruptedException e) {
+                /**
+                 * 允许线程退出
+                 */
+            }
+        }
+
+        public void cancel() {
+            interrupt();
+        }
+    }
+</code></pre>
+<p>Callable：可携带结果的任务<br>
+Future：可以获取任务结果，可调用cancel取消任务，已经提交但还未开始执行的任务则不会再执行，如果子任务已经开始执行了，但是还没有执行结束，根据mayInterruptIfRunning的值，如果mayInterruptIfRunning = true，那么会中断执行任务的线程，然后返回true，如果参数为false，会返回true，不会中断执行任务的线程</p>
+<p>线程池（Executor) ：基于生产者/消费者模式，对任务（Task）进行了抽象和封装，用于异步任务的执行，并支持不同类型的任务执行策略(FIFO,LIFO,优先级)，对任务提交和任务执行解耦。</p>
+<p>如何定制线程池大小？<br>
+线程池的长度应该由配置动态提供，综合考虑CPU数量，计算环境，资源预算等。对于不同类别的任务，可以考虑使用多个线程池，每个线程池可以根据不同任务类型（计算，I/O，混合操作）进行调节。<br>
+计算密集型任务(N(cpu)+ 1)：确保有一个额外的线程，可以保证CPU处理周期不会中断<br>
+I/O等阻塞类型任务：要考虑任务花费在等待的时间和计算的时间比率。内存资源，文件句柄，套接字句柄，数据库连接数等</p>
+<h2 id="线程池好处">线程池好处：</h2>
+<p>1 重用线程：可以重用已存在的线程，而不是创建新的，减少创建，关闭线程的资源开销<br>
+2 高响应性：新任务到达时，工作线程已经有了，不会因为需要重新创建线程而延迟新任务的执行<br>
+3 稳定性：通过合理调整线程池大小，可以让cpu工作保持稳定，防止过多线程竞争资源</p>
+<h2 id="线程池的生命周期">线程池的生命周期：</h2>
+<p>运行 -&gt; 关闭 -&gt; 终止<br>
+线程池关闭方法：<br>
+shutdown：平缓的关闭，停止提交新任务，等待完成所有已提交的执行中的任务和尚未执行的任务。<br>
+shutdownNow：强制关闭，取消所有运行中的任务和尚未执行的任务</p>
+<h2 id="executors静态工厂方法提供的四种线程池">Executors静态工厂方法提供的四种线程池：</h2>
+<p>newFixedThreadPool：定长线程池。每提交一个任务则创建一个线程，直到最大长度，保持长度不变。</p>
+<p>newCachedThreadPool：可缓存的线程池。长度不限制，每当任务增加，则灵活创建新线程，若长度超过了处理需要，则回收空闲线程。</p>
+<p>newSingleThreadExecutor: 单线程的串行执行任务，执行策略有FIFO，LIFO，优先级</p>
+<p>newScheduleThreaPool：定长线程池，且支持定时和周期性任务执行。<br>
+Timer也可以支持定时执行任务，但只创建唯一的线程来执行所有的timer任务，若任务很耗时，则会影响其他timer任务的时效准确性。且若一个timer任务出现异常，将导致所有任务都不能再执行了。因此采用ScheduleThreaPool更好。</p>
+<h2 id="threadpoolexecutor实现定制化线程池">ThreadPoolexecutor实现定制化线程池</h2>
+<ul>
+<li>核心池大小：线程池维护的核心线程数，有任务提交时才开始创建</li>
+<li>最大池大小：若线程池内线程数超过核心池大小，有任务提交时新建线程，但不会超过该数</li>
+<li>存活时间：若一个线程已经闲置的时间超过了存活时间，则将被回收，若当前超过了核心池大小，则终止它</li>
+<li>任务队列：一个BlockingQueue来实现任务队列。可以实现为有限队列，无限队列和同步移交<br>
+newFixedThreadPool和newSingleThreadExecutor是采用一个无限的LinkBlockingQueue。比较好的方式是采用有限队列（ArrayBlockingQueue,PriorityBlocking)避免资源耗尽，但必须有饱和策略（提交任务时抛出异常/抛弃最低优先级任务，执行新任务等）。<br>
+newCachedThreadPool则采用SynchronousQueue，即同步移交的方式.SynchronousQueue没有容量，是无缓冲等待队列，是一个不存储元素的阻塞队列，会直接将任务交给消费者，必须等队列中的添加元素被消费后才能继续添加新的元素.<br>
+以上的任务队列都是以FIFO顺序执行，也可以通过传入PriorityBlockingQueue（任务实现Comparable）来通过优先级排序执行。</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java并发场景]]></title>
+        <id>https://bingocode.github.io//post/java-bing-fa-shi-xian-xian-cheng-an-quan-de-lei</id>
+        <link href="https://bingocode.github.io//post/java-bing-fa-shi-xian-xian-cheng-an-quan-de-lei">
+        </link>
+        <updated>2019-10-23T11:31:16.000Z</updated>
+        <content type="html"><![CDATA[<p>常见的复合操作：”没有则加入“，”相等则移除/替换“等，都应该被实现为原子性操作来保证并发安全。<br>
+1 循环遍历线程安全容器时需要进行同步，不过这种其他线程访问容器时就必须等待遍历结束，这样由于在比较长时间占有锁，会破坏程序可伸缩性，有产生死锁的风险。有个好的方案是，循环时通过新变量复制容器，这样就形成了线程限制,但是开销也比较大。</p>
+<pre><code>synchronized(vector) {
+    for(int i = 0; i&lt; vector.size(); i++){
+        fun(vector.get(i));
+    }
+}
+
+Vector vecoterCopy = new Vector(vector);
+   for(int i = 0; i&lt; vecoterCopy.size(); i++){
+        fun(vecoterCopy.get(i));
+    }
+</code></pre>
+<p>注意：迭代器的“及时失败”：Collection在迭代开始后，若被修改，则会抛出异常ConcurrentModificationException，</p>
+<p>2 并发容器<br>
+HashMap - &gt; ConcurrentHashMap<br>
+List -&gt; CopyOnWriteArrayList<br>
+Set -&gt; CopyOnWriteSet<br>
+Queue -&gt; ConcurrentLinkedQueue</p>
+<p>ConcurrentHashMap采用分离锁，允许多线程并发访问读写Map，且提供不会抛出ConcurrentModificationException的迭代器，因此不需要在容器迭代时加锁，即迭代器的”弱一致性“（而不是及时失败）</p>
+<p>CopyOnWriteArrayList同样避免了在迭代期间对容器加锁和复制，实现原理是利用不可变对象被正确发布后，则访问它就不需要同步，每次需要修改时，都会重新发布一个新的容器拷贝。其内部是一个不可变数组，每次改变时，复制数组。（因为复制数组也有开销，若对容器迭代操作的频率远高于对容器修改的频率时可以考虑）</p>
+<p>BlockingQueue：若Queue已满，put方法会阻塞直到空间可用，反之若为空，则take阻塞。<br>
+生产者和消费者模式，生产者和消费者以不同的速度生成和消费任务，当一个任务加入时，不会立刻执行，而是置入队列中，等待处理。比如线程池和工作队列</p>
+<p>双端队列：<br>
+DeQue(ArrayDeque)<br>
+(BlockingDeque)LinkedBlockingDeque<br>
+窃取模式：在传统都消费者生产者模式中，所有消费者共享一个工作队列，在窃取模式中，每个消费者都有<br>
+自己的一个双端队列，若一个消费者完成了自己双端队列的工作，则可以偷取其他消费者的双端队列中末尾任务。这样有更好的伸缩性。</p>
+<p>3 线程阻塞和可中断：<br>
+一个线程因为等待I/O，等待获取一个锁，等待从Thread.sleep中唤醒，或等待另一个线程的计算结果时，它则被设置为阻塞状态（BLOCKED,WAITING,TIMED_WAITING），等一个外部事件发生后，才被置回RUNNABLE状态，重新获得调度的机会</p>
+<p>被中断：若一个方法能抛出InterruptedException时，则该方法为一个可阻塞方法，若它被中断，则可提前结束阻塞状态。java中线程提供interrupt方法，用来给一个线程设置一个标志，表示它已被中断。在调用sleep方法时，就会抛出InterruptedException异常</p>
+<p>4 Synchronizer（同步器）：<br>
+封装状态，这些状态决定线程是通过还是等待。<br>
+4.1 闭锁（latch）<br>
+可以延迟线程的执行的进度。就像一个大门，直到闭锁到达终点状态之前，门一直是关闭的，没有任何线程能够通过，在终点状态来了后，门才打开，允许所有线程通过，而且闭锁到达终点状态后就不会再改变状态了。可用来确保特定活动在其他活动完成后才开始发生。</p>
+<p>CountDownLatch：<br>
+将 CountDownLatch 的计数器初始化为n ：new CountDownLatch(n)，每当一个任务线程执行完毕，就将计数器减1 countdownlatch.countDown()，当计数器的值变为0时，在CountDownLatch上 await() 的线程就会被唤醒。一个典型应用场景就是启动一个服务时，主线程需要等待多个组件加载完毕，之后再继续执行</p>
+<pre><code>public class CountDownLatchTest {
+    private static final int THREAD_COUNT = 2;
+    public static void main(String[] args) {
+        CountDownLatch gate = new CountDownLatch(THREAD_COUNT);
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    System.out.println(&quot;自线程1 执行&quot;);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                gate.countDown();
+            }
+        });
+        thread1.start();
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    System.out.println(&quot;自线程2 执行&quot;);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                gate.countDown();
+            }
+        });
+        thread2.start();
+        System.out.println(&quot;主线程 等待中&quot;);
+        try {
+            gate.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(&quot;所有子线程执行完毕，主线程开始执行&quot;);
+    }
+}
+</code></pre>
+<p>FutureTask<br>
+也可以作为闭锁，它提供一个可取消的携带结果的异步计算，可以通过isDone查询一个任务是否执行完成，以及isCancelled查询是否被取消，若已完成（执行完成/已取消/异常中断）则可直接调用get方法获取结果，若未完成/未启动，调用get方法则会导致调用线程阻塞。</p>
+<pre><code>public class FutureTaskTest {
+    public static void main(String[] args) {
+        FutureTask&lt;String&gt; futureTask = new FutureTask&lt;String&gt;(new Callable&lt;String&gt;() {
+            @Override
+            public String call() throws Exception {
+                Thread.sleep(2000);
+                System.out.println(&quot;getResult in futureTask&quot;);
+                return &quot;futureTask&quot;;
+            }
+        });
+        Thread thread = new Thread(futureTask);
+        thread.start();
+        System.out.println(&quot;try get result in main&quot;);
+        try {
+            String result = futureTask.get();
+            System.out.println(&quot;hello &quot; + result);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<p>4.2 信号量（Semaphore）<br>
+用于限制可以同时访问某些资源的线程数量，一个Semaphore管理有限个许可，线程通过调用其acquire方法获取许可，若当前已经没有许可了，则acquire方法会阻塞，直到有可用的许可为止。通过调用release方法，则可以将许可归还。<br>
+https://www.jianshu.com/p/0572483ecec7</p>
+<pre><code>public class SemaphoreTest {
+    public static void main(String[] args) {
+        Semaphore semaphore = new Semaphore(2);
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //执行
+                try {
+                    semaphore.acquire();
+                    System.out.println(&quot;线程1,获取到许可，开始执行: &quot;);
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //释放
+                semaphore.release();
+                System.out.println(&quot;线程1执行完释放许可&quot;);
+            }
+        });
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    semaphore.acquire();
+                    System.out.println(&quot;线程2,获取到许可，开始执行: &quot;);
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //释放
+                semaphore.release();
+                System.out.println(&quot;线程2执行完释放许可&quot;);
+            }
+        });
+        thread1.start();
+        thread2.start();
+        try {
+            semaphore.acquire();
+            System.out.println(&quot;主线程, 获取到许可，开始执行: &quot;);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //释放
+        semaphore.release();
+        System.out.println(&quot;主线程执行完释放许可&quot;);
+    }
+}
+</code></pre>
+<p>4.3 关卡（Barrier）<br>
+关卡能够阻塞一组线程，只有当该线程组的所有线程都到达关卡点，才能继续处理。<br>
+CyclicBarrier（循环关卡）：当一个线程到达关卡点时，调用await会阻塞，直到所有线程都到达关卡点，关卡就会被成功突破，所有线程都被释放。而关卡会重置以备下一次使用。可以用于采用多线程计算数据，最后合并计算结果的场景。</p>
+<pre><code>public class CyclicBarrierDemo {
+    static class TaskThread extends Thread {
+        CyclicBarrier barrier;
+        public TaskThread(CyclicBarrier barrier) {
+            this.barrier = barrier;
+        }
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(1000);
+                System.out.println(getName() + &quot; 到达栅栏 A&quot;);
+                barrier.await();
+                System.out.println(getName() + &quot; 冲破栅栏 A&quot;);
+                Thread.sleep(2000);
+                System.out.println(getName() + &quot; 到达栅栏 B&quot;);
+                barrier.await();
+                System.out.println(getName() + &quot; 冲破栅栏 B&quot;);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void main(String[] args) {
+        int threadNum = 5;
+        CyclicBarrier barrier = new CyclicBarrier(threadNum, new Runnable() {
+            
+            @Override
+            public void run() {
+                System.out.println(Thread.currentThread().getName() + &quot; 完成最后任务&quot;);
+            }
+        });
+        for(int i = 0; i &lt; threadNum; i++) {
+            new TaskThread(barrier).start();
+        }
+    }
+    
+}
+</code></pre>
+<p>Exchanger：用于两个工作线程之间交换数据的封装工具类，简单说就是一个线程在完成一定的事务后想与另一个线程交换数据，则第一个先拿出数据的线程会一直等待第二个线程，直到第二个线程拿着数据到来时才能彼此交换对应数据.当一个线程到达 exchange 调用点时，如果其他线程此前已经调用了此方法，则其他线程会被调度唤醒并与之进行对象交换，然后各自返回；如果其他线程还没到达交换点，则当前线程会被挂起，直至其他线程到达才会完成交换并正常返回，或者当前线程被中断或超时返回.</p>
+<pre><code>public class ExchangerTest {
+    static class Producer extends Thread {
+        private Exchanger&lt;Integer&gt; exchanger;
+        private static int data = 0;
+        Producer(String name, Exchanger&lt;Integer&gt; exchanger) {
+            super(&quot;Producer-&quot; + name);
+            this.exchanger = exchanger;
+        }
+
+        @Override
+        public void run() {
+            for (int i=1; i&lt;5; i++) {
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                    data = i;
+                    System.out.println(getName()+&quot; 交换前:&quot; + data);
+                    data = exchanger.exchange(data);
+                    System.out.println(getName()+&quot; 交换后:&quot; + data);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    static class Consumer extends Thread {
+        private Exchanger&lt;Integer&gt; exchanger;
+        private static int data = 0;
+        Consumer(String name, Exchanger&lt;Integer&gt; exchanger) {
+            super(&quot;Consumer-&quot; + name);
+            this.exchanger = exchanger;
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                data = 0;
+                System.out.println(getName()+&quot; 交换前:&quot; + data);
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                    data = exchanger.exchange(data);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(getName()+&quot; 交换后:&quot; + data);
+            }
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Exchanger&lt;Integer&gt; exchanger = new Exchanger&lt;Integer&gt;();
+        new Producer(&quot;&quot;, exchanger).start();
+        new Consumer(&quot;&quot;, exchanger).start();
+        TimeUnit.SECONDS.sleep(7);
+        System.exit(-1);
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java并发——线程安全]]></title>
+        <id>https://bingocode.github.io//post/java-bing-fa</id>
+        <link href="https://bingocode.github.io//post/java-bing-fa">
+        </link>
+        <updated>2019-10-21T08:38:47.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="线程安全">线程安全</h2>
+<p>在一个类内部封装了所有必要的同步，外部对其进行顺序或并发（交替调度执行）的一系列操作（不需要额外的同步）都不会导致该类都实例处于无效状态，则这个类就是线程安全的。</p>
+<h3 id="无状态类不可变性">无状态类（不可变性）</h3>
+<p>无状态对象（不包含变量，也不应用其他对象的域）永远是线程安全的，因为一个线程访问该对象，访问的状态变量都存储在该线程的栈中，而线程间不共享各自栈中的状态，因此不会影响其他线程访问该对象的正确性。<br>
+无状态类必须满足三个条件<br>
+1 创建时没有逸出<br>
+2 所有域都是final类型<br>
+3 创建后状态不能再被修改</p>
+<pre><code>public class StateLessObject {
+    public int add(int a, int b) {
+        int c = a + b;
+        return c;
+    }
+}
+</code></pre>
+<h3 id="原子性">原子性</h3>
+<p>若有操作a和b，从执行a的线程角度来看，当其他线程执行b时，要么b全部执行，要么b没有执行，则a和b互为原子操作。</p>
+<p>原子变量不使用锁或其他同步机制来保护对其值的并发访问。所有操作都是基于CAS原子操作的。他保证了多线程在同一时间操作一个原子变量而不会产生数据不一致的错误，并且他的性能优于使用同步机制保护的普通变量，譬如说在多线程环境 中统计次数就可以使用原子变量。<br>
+利用原子变量保存状态，并且在单一原子操作中更新相互关联的状态变量，这样对于整个类来说便是线程安全的了</p>
+<pre><code>public class Counting {
+    private final AtomicLong count = new AtomicLong(0);
+    public long getCount() {
+        return count.get();
+    }
+    public void addOne() {
+        count.incrementAndGet();
+    }
+}
+在java中可以用AtomicReference来管理其他类型的变量
+</code></pre>
+<p>CAS (Compare-And-Swap) 是一种硬件对并发的支持，针对多处理器操作而设计的处理器中的一种特殊指令，用于管理对共享数据的并发访问。CAS 是一种无锁的非阻塞算法的实现，</p>
+<pre><code>1 若线程从内存中读取i的值记录为k，若此时i = 0，则k = 0；
+2 记录准备要给i写入的新值 j = k+1 = 1
+3 更新内存中的i，此时先进行i和k比较，若i的值还等于k，则写入j，否则不执行任何操作（该操作对应操作系统的一条硬件操作指令，本身具有原子性）
+
+CAS的应用——自旋锁
+public class SpinLock {
+  private AtomicReference&lt;Thread&gt; sign =new AtomicReference&lt;&gt;();
+
+  public void lock(){
+    Thread current = Thread.currentThread();
+    while(!sign .compareAndSet(null, current)){
+    }
+  }
+
+  public void unlock (){
+    Thread current = Thread.currentThread();
+    sign .compareAndSet(current, null);
+  }
+}
+</code></pre>
+<p>ABA问题：若线程A将要执行上面的3操作时，线程B把i加1，之后又将i减1，然后A开始执行3时，i依然等于k，于是A会将新值j更新到内存。这种问题对于基本类型值来说影响不大，但对于引用类型就会产生很大影响。Java为了解决ABA问题，提供AtomicStampedReference类进行引用但版本控制，每次有线程修改了引用的值，就会进行版本的更新。</p>
+<h3 id="锁可见性">锁（可见性）</h3>
+<p>可见性：当线程A修改了对象的状态后，其他线程也能看到改变。在没有同步情况下，编译器等对代码的执行可能由重排序现象，因此多线程下需要用同步机制来保证可见性。<br>
+synchronized块：由锁对象和代码块组成，静态synchronized锁是从Class对象获取，其他就是该方法所在对象本身。</p>
+<ul>
+<li>每个java对象都可用于同步的锁，即内部锁（监视器锁），具有互斥性，最多只能有一个线程拥有该对象锁，同一时间就只能有一个线程运行特定锁保护的代码块。</li>
+<li>内部锁是可重入的，即线程可以多次获取自己已经占用的锁，如线程A请求一个未占用的锁，此时JVM记录锁占有者，并将请求计数+1，若A再次请求该锁，计数递增；每次A退出同步块，则计数器递减，直到计数器归零，锁被释放。</li>
+</ul>
+<pre><code>若锁不可重入，则下面会出现死锁
+public class View {
+    public synchronized void fun() {
+        System.out.println(&quot;parent&quot;);
+    }
+}
+public class TextView extends View {
+    public synchronized void fun() {
+        System.out.println(&quot;child&quot;);
+        super.fun();
+    }
+}
+</code></pre>
+<ul>
+<li>内部锁也可以用来保证内存可见性，为了保证所有线程能看到共享变量的最新值，读取和写入都必须用同一把锁进行同步</li>
+</ul>
+<p>锁保护的变量：每个共享的可变变量都需要由唯一确定的锁保护，每次访问该变量时，都必须要获取该锁。比如将变量封装private，且get和set方法都用synchronized修饰。对于每个涉及多个变量的约束，需要用同一个锁来保护其所有变量。</p>
+<p>活跃度和性能: 若线程长时间占有锁，则会引发活跃度和性能问题，因此执行耗时操作（网络，io）时，不要占有锁</p>
+<p>私有锁对象：相比使用对象内部锁（或其他公共可访问锁），外部代码无法得到它，因此可以更好地规避活跃性风险。</p>
+<pre><code>public class PrivateLock {
+    private final Object myLock = new Object();
+    void fun() {
+        synchronized(myLock) {
+            // 私有锁同步的代码块
+        }
+    }
+}
+</code></pre>
+<h3 id="volatile变量">Volatile变量</h3>
+<p>是同步的一种弱形式，若a被声明为volatile类型，则编译器与运行时对其操作不会与其他内存操作重排序，也不会缓存在寄存器或其他地方，只在主存读取写入，保证了不同线程对该变量操作的内存可见性。</p>
+<p>加锁能保证原子性和可见性，volatile只能保证可见性。比如自增操作时，多线程环境下volatile不能保证结果正确，volatile通常用来作为标记变量使用</p>
+<h3 id="发布逸出">发布逸出</h3>
+<p>安全发布：一个对象发布当时的状态对所有访问线程可见，且其引用也是都可见的<br>
+从构造函数内部获取的this对象，都是未完成构造的对象，会导致逸出，只有当构造函数返回后，才处于稳定的状态。可以考虑使用工厂方法防止this引用在构造期间逸出。</p>
+<pre><code>public class SafeListener {
+    private final EventListener listener;
+    private SafeListener() {
+        listener = new EventListener() {
+            public void onEvent(Event e) {
+                fun();
+            }
+        }
+    }
+    public static SafeListener newInstance(EventSource source) {
+        SafeListener safe = new SafeListener;
+        source.registerListener(safe.listener);
+        returen safe;
+    }
+}
+</code></pre>
+<p>如果一个对象是可变的，它就必须被安全的发布，通常发布线程和消费线程都必须同步化，对象的引用和对象的状态必须同时对其他线程可见<br>
+1 通过静态初始化器初始化对象的引用。因为静态初始化器由JVM在类的初始化阶段执行，由于JVM内部的同步，确保了对象的安全发布</p>
+<pre><code>public static Holder holder = new Holder();
+</code></pre>
+<p>2 对象的引用存储到volatile或AtomicRefrence，或被正确创建的对象的final域中，或者由锁保护的域中（Hashtable,ConcurrentMap这些线程安全容器）</p>
+<h3 id="线程封闭">线程封闭</h3>
+<p>线程封闭技术是实现线程安全最简单的方式之一，比如安卓的视图操作只允许主线程操作，JDBC连接池中的Connection只限制在处于请求处理期间的线程中</p>
+<p>栈限制：本地变量被限制在线程本地中，存在于执行线程的栈，其他线程无法访问该栈，比如变量放在方法内作为局部变量，而不是放在方法外部。</p>
+<p>ThreadLocal：提供了get和set访问器，为每个使用它的线程维护单独的一份数据拷贝，因此get总是返回当前执行线程通过set设置的最新值</p>
+<h2 id="在并发程序使用共享对象">在并发程序使用共享对象</h2>
+<p>1 线程限制：通过限制在一个线程中，只能被占用它的线程修改<br>
+2 共享只读：共享的只读对象，没有额外同步，可以被多个线程访问，但是任何线程都不能修改它<br>
+3 共享线程安全：在对象内部进行同步，通过公共接口访问<br>
+4 被守护：被守护的对象只能通过特定锁访问，比如被线程安全对象封装的对象，被特定锁保护的已发布对象。即使一个对象不是线程安全的，但也可以通过一些机制让它安全地用于多线程程序。把数据封装在对象内部，把对数据的访问限制在对象的方法上，更容易确保线程在访问数据时能获得正确的锁<br>
+比如Collections.synchronizedList方法通过装饰器模式，将非线性安全的ArrayList等封装，装饰器将相关接口每个方法都实现为同步方法。<br>
+5 必须保证对象的所有同步方法用的锁，都是同一个锁</p>
+<pre><code>public class ListHelper&lt;E&gt; {
+    public List&lt;E&gt; list = Collections.synchronizedList(new ArrayList&lt;E&gt;());
+
+    public boolean putIfAbsent(E x) {
+        synchronized(list) {
+            boolean absent = !list.contains(x);
+            if(absent) {
+                list.add(x);
+            }
+            return absent;
+        }
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Flutter基础]]></title>
         <id>https://bingocode.github.io//post/flutter-ji-chu</id>
@@ -359,59 +909,6 @@ mBluetoothAdapter.enable();
         </link>
         <updated>2019-07-08T11:19:43.000Z</updated>
         <content type="html"><![CDATA[<h2 id="android">Android</h2>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[程序员修炼之道]]></title>
-        <id>https://bingocode.github.io//post/cheng-xu-yuan-xiu-lian-zhi-dao</id>
-        <link href="https://bingocode.github.io//post/cheng-xu-yuan-xiu-lian-zhi-dao">
-        </link>
-        <updated>2019-07-08T08:09:00.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="注重实效的哲学">注重实效的哲学</h2>
-<ul>
-<li>最大的弱点在于害怕暴露弱点，负责是指遇到问题会提供各种选择，而不是找各种借口，不要害怕提出要求，也不要害怕承认你需要帮助。</li>
-<li>软件的熵（一个系统中无序的总量）需要通过不断优化劣质代码来降低，防止软件腐烂，就必须与熵战斗到底</li>
-<li>石头汤：开发协作由于每个人时间安排不一致，但是为了避免项目的拖延，可以先完成自己的那部分功能，然后给大家看，等着他们开始增加你想要的功能，因为让人们参与正在发生的成功更容易，让他们瞥见未来，就能让他们聚集在你周围。并且必须留心大图景，持续观察周围发生的改变，而不只是你自己在做的事情。</li>
-<li>要注意物极必反，你所要完成的项目的范围和质量应该作为项目需求的一部分规定下来，让质量成为需求问题。我们要学会在不完美的世界上合理地编写代码</li>
-<li>知识上的投资总能够得到最好的回报，要学会管理知识资产<br>
-1.定期投资作为习惯<br>
-2.多元化投资是长期成功的关键<br>
-3.聪明的投资者会权衡风险和回报<br>
-4.设法低买高卖以获得最大回报：在新兴技术流行前学习它可能就和找到被低估的股票一样<br>
-5.应该周期性地重新评估和平衡资产</li>
-<li>每年至少学习一种新语言，每个月读一本书（技术和非技术），打听公司以外的人都在做什么，试验不同的环境（系统，IDE，软件），跟上潮流，持续投入，设法将所学应用到项目中。</li>
-<li>遇到问题先自己找答案，再去找出能找到答案的人，而不是搁置问题，与人交谈不仅帮你建立人际网络，还能促进旧的知识资产增长。</li>
-<li>批判地思考所学，确保知识资产是准确无误的，才能够理解一些复杂的答案</li>
-<li>寻找答案？<br>
-1.明确到底想问什么<br>
-2.组织问题，表达寻求帮助，而不是要求对方必须回答<br>
-3.坐回原位，耐性等待，每个人都很忙</li>
-<li>交流：想说什么？了解听众（需要，能力，兴趣）？时机？风格？获取反馈？回复他人</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Flutter混合开发]]></title>
-        <id>https://bingocode.github.io//post/flutter-hun-he-kai-fa</id>
-        <link href="https://bingocode.github.io//post/flutter-hun-he-kai-fa">
-        </link>
-        <updated>2019-07-08T04:21:50.000Z</updated>
-        <content type="html"><![CDATA[<p>##配置</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[关于]]></title>
-        <id>https://bingocode.github.io//post/about</id>
-        <link href="https://bingocode.github.io//post/about">
-        </link>
-        <updated>2019-01-25T11:09:48.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="关于我">关于我</h2>
-<p>你好，这是我的博客，很荣幸可以与阁下分享我的人生轨迹。本人目前从事Android开发。</p>
-<h2 id="关于博客">关于博客</h2>
-<p>采用静态博客写作客户端<a href="https://gridea.dev/">Gridle</a>编写，存放在<a href="https://github.com/bingocode/bingocode.github.io">Github Page</a></p>
-<h2 id="联系方式">联系方式</h2>
-<p>QQ: 2416940975<br>
-e-mail: bingocoder@outlook.com</p>
 ]]></content>
     </entry>
 </feed>
