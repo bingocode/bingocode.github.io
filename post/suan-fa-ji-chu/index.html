@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Flutter | BingoCode</title>
+<title>算法基础 | BingoCode</title>
 <meta name="description" content="先天领周天，盖周天之变，化吾为王">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,6 +13,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://bingocode.github.io//styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -115,93 +121,47 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: Flutter</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://bingocode.github.io//post/flutter-ji-chu">
-                  <h2 class="post-title">Flutter基础</h2>
-                </a>
-                <div class="post-date">
-                  2019-07-29
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
+          <div class="post-detail">
+            <h2 class="post-title">算法基础</h2>
+            <div class="post-date">2019-11-25</div>
+            
+              <div class="feature-container" style="background-image: url('https://bingocode.github.io//post-images/suan-fa-ji-chu.jpg')">
               </div>
-              
-                <a class="right" href="https://bingocode.github.io//post/flutter-ji-chu">
-                  <div class="feature-container" style="background-image: url('https://bingocode.github.io//post-images/flutter-ji-chu.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://bingocode.github.io//post/dart-yu-fa">
-                  <h2 class="post-title">Dart语法</h2>
-                </a>
-                <div class="post-date">
-                  2019-07-28
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://bingocode.github.io//post/dart-yu-fa">
-                  <div class="feature-container" style="background-image: url('https://bingocode.github.io//post-images/dart-yu-fa.jpeg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://bingocode.github.io//post/ru-he-you-ya-di-cai-dian-gan-gong-jiao">
-                  <h2 class="post-title">如何优雅地踩点赶公交</h2>
-                </a>
-                <div class="post-date">
-                  2019-07-10
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://bingocode.github.io//post/ru-he-you-ya-di-cai-dian-gan-gong-jiao">
-                  <div class="feature-container" style="background-image: url('https://bingocode.github.io//post-images/ru-he-you-ya-di-cai-dian-gan-gong-jiao.jpeg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://bingocode.github.io//post/flutter-hun-he-kai-fa">
-                  <h2 class="post-title">Flutter混合开发</h2>
-                </a>
-                <div class="post-date">
-                  2019-07-08
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://bingocode.github.io//post/flutter-hun-he-kai-fa">
-                  <div class="feature-container" style="background-image: url('https://bingocode.github.io//post-images/flutter-hun-he-kai-fa.jpeg')">
-                  </div>
-                </a>
-              
-            </article>
-          
+            
+            <div class="post-content">
+              <h1 id="时间复杂度">时间复杂度</h1>
+<h1 id="空间复杂度">空间复杂度</h1>
 
-          <div class="pagination-container">
-  
-  
-</div>
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://bingocode.github.io//tag/84l3513R4" class="tag">
+                    算法
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://bingocode.github.io//post/shu-ju-jie-gou">
+                  <h3 class="post-title">
+                    数据结构
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
 
         </div>
       </div>
@@ -223,6 +183,29 @@ var app = new Vue({
 })
 
 </script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '78866918acdc5701edcc',
+        clientSecret: '1c5cd320e7e1f13074ee95d1ea7189f3f7f0a127',
+        repo: 'bingocode.github.io',
+        owner: 'bingocode',
+        admin: ['bingocode'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bingocode.github.io/</id>
     <title>BingoCode</title>
-    <updated>2019-11-19T15:50:57.861Z</updated>
+    <updated>2019-12-10T03:26:32.455Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bingocode.github.io/"/>
     <link rel="self" href="https://bingocode.github.io//atom.xml"/>
@@ -10,6 +10,28 @@
     <logo>https://bingocode.github.io//images/avatar.png</logo>
     <icon>https://bingocode.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, BingoCode</rights>
+    <entry>
+        <title type="html"><![CDATA[算法基础]]></title>
+        <id>https://bingocode.github.io//post/suan-fa-ji-chu</id>
+        <link href="https://bingocode.github.io//post/suan-fa-ji-chu">
+        </link>
+        <updated>2019-11-25T15:32:32.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="时间复杂度">时间复杂度</h1>
+<h1 id="空间复杂度">空间复杂度</h1>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[数据结构]]></title>
+        <id>https://bingocode.github.io//post/shu-ju-jie-gou</id>
+        <link href="https://bingocode.github.io//post/shu-ju-jie-gou">
+        </link>
+        <updated>2019-11-25T15:09:26.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="数组">数组</h1>
+<h1 id="链表">链表</h1>
+<h1 id="树">树</h1>
+<h1 id="图">图</h1>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Java并发性能]]></title>
         <id>https://bingocode.github.io//post/java-bing-fa-xing-neng</id>
@@ -411,6 +433,7 @@ CyclicBarrier（循环关卡）：当一个线程到达关卡点时，调用awai
     }
 }
 </code></pre>
+<p>4.4 构建自定义同步器</p>
 ]]></content>
     </entry>
     <entry>
@@ -610,6 +633,15 @@ ReentrantReadWriteLock实现思想：
 <p>Flutter 平台插件工程，包含 Dart 层与 Native 平台层的实现。</p>
 <h2 id="flutter-package">Flutter Package</h2>
 <p>Flutter 纯 Dart 插件工程，仅包含 Dart 层的实现，往往定义一些公共 Widget。</p>
+<p>##RUn App<br>
+runApp(Wdiget app)函数作用是将给定的根组件(上面的app)填满整个屏幕，是Flutter这个Dart语音的移动应用框架的入口。</p>
+<p>##主题：<br>
+应用主题<br>
+局部主题</p>
+<h2 id="http请求">Http请求</h2>
+<p>使用Http请求</p>
+<p>使用HttpClient请求</p>
+<h2 id=""></h2>
 ]]></content>
     </entry>
     <entry>
@@ -924,24 +956,6 @@ mBluetoothAdapter.enable();
 <li>建立连接后，两个设备都有一个<strong>BluetoothSocket</strong>，并通过该Socket进行流式传输数据4</li>
 <li>与BLE设备连接，就是连接到该设备的GATT服务，并得到一个BluetoothGatt对象，通过该对象和BLE设备交互，在支持的位置读取和写入属性。</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[如何优雅地踩点赶公交]]></title>
-        <id>https://bingocode.github.io//post/ru-he-you-ya-di-cai-dian-gan-gong-jiao</id>
-        <link href="https://bingocode.github.io//post/ru-he-you-ya-di-cai-dian-gan-gong-jiao">
-        </link>
-        <updated>2019-07-10T07:44:43.000Z</updated>
-        <content type="html"><![CDATA[<p>赶公交</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Android进阶]]></title>
-        <id>https://bingocode.github.io//post/android-jin-jie</id>
-        <link href="https://bingocode.github.io//post/android-jin-jie">
-        </link>
-        <updated>2019-07-08T11:19:43.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="android">Android</h2>
 ]]></content>
     </entry>
 </feed>
